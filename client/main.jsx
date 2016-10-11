@@ -6,5 +6,13 @@ import '../imports/startup/accounts-config.js';
 import App from '../imports/ui/App.jsx';
 
 Meteor.startup(() => {
-  render(<App />, document.querySelector("main"));
+  FlowRouter.route("/", {
+    name: "home",
+    action() {
+      if (Meteor.user() == null) {
+        ReactLayout.render(<App />, document.querySelector("main"));
+      }
+    },
+  });
 });
+ 

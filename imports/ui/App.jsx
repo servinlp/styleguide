@@ -7,8 +7,10 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 export default class App extends Component {
   render() {
     return (
-      <h1>Styleguide</h1>
-      <AccountsUIWrapper />
+      <div className="test">
+        <h1>Styleguide</h1>
+        <AccountsUIWrapper />
+      </div>
     );
   }
 }
