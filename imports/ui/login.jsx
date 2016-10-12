@@ -40,8 +40,13 @@ export default class Login extends Component {
   }
 
   spanStay(index){
-    console.log(index);
-    console.log(React.findDOMNode(this));
+    console.log(this.refs[index].value.length);
+    console.log(this.refs[index].value.length > 0);
+    if (this.refs[index].value.length > 0) {
+      this.refs[index].classList.add("value");
+    } else {
+      this.refs[index].classList.remove("value");
+    }
   }
 
   render() {
@@ -52,12 +57,12 @@ export default class Login extends Component {
             <fieldset>
               <legend>Login</legend>
               <label>
-              <input type="text" ref="username" onBlur={this.spanStay.bind(this, 1)} />
+              <input type="text" ref="username" onBlur={this.spanStay.bind(this, "username")} />
               <span>Username</span></label>
               <label>
-              <input type="password" ref="password" onBlur={this.spanStay.bind(this)} />
+              <input type="password" ref="password" onBlur={this.spanStay.bind(this, "password")} />
               <span>Wachtwoord</span></label>
-              <input type="submit" value="Login" onBlur={this.spanStay.bind(this)} />
+              <input type="submit" value="Login" />
             </fieldset>
           </form>
         </section>
@@ -67,13 +72,13 @@ export default class Login extends Component {
             <fieldset>
               <legend>Register</legend>
               <label>
-              <input type="text" ref="user" onBlur={this.spanStay.bind(this)} />
+              <input type="text" ref="user" onBlur={this.spanStay.bind(this, "user")} />
               <span>Username</span></label>
               <label>
-              <input type="password" ref="pass" onBlur={this.spanStay.bind(this)} />
+              <input type="password" ref="pass" onBlur={this.spanStay.bind(this, "pass")} />
               <span>Wachtwoord</span></label>
-              <label>
-              <input type="password" ref="passAgain" />
+              <label> 
+              <input type="password" ref="passAgain" onBlur={this.spanStay.bind(this, "password")} />
               <span>Wachtwoord again</span></label>
               <input type="submit" value="Register" />
             </fieldset>

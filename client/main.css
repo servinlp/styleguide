@@ -54,15 +54,16 @@ p {
 
 .login {
   width: 100%;
-  min-height: 100vh; }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; }
   .login section {
     width: 50%;
     min-height: 100vh;
     background-color: #C03221;
     box-sizing: border-box;
-    padding: 10%;
-    display: inline-block;
-    vertical-align: top; }
+    padding: 10%; }
     .login section:last-child {
       background-color: #FF715B; }
     .login section form {
@@ -93,7 +94,10 @@ p {
           -moz-transform-origin: top center;
           -ms-transform-origin: top center;
           -o-transform-origin: top center;
-          transform-origin: top center; }
+          transform-origin: top center;
+          -webkit-transition: -webkit-transform 0.3s ease;
+          -moz-transition: -moz-transform 0.3s ease;
+          transition: transform 0.3s ease; }
         .login section form label input {
           border: none;
           border-bottom: 1px solid #FCFFFC;
@@ -108,14 +112,11 @@ p {
           color: #fff; }
           .login section form label input:focus {
             outline: none; }
-          .login section form label input:focus + span, .login section form label input .value {
+          .login section form label input:focus + span, .login section form label input.value + span {
             -webkit-transform: translateY(200%) scale(1);
             -moz-transform: translateY(200%) scale(1);
             -ms-transform: translateY(200%) scale(1);
             -o-transform: translateY(200%) scale(1);
-            transform: translateY(200%) scale(1);
-            -webkit-transition: -webkit-transform 0.3s ease;
-            -moz-transition: -moz-transform 0.3s ease;
-            transition: transform 0.3s ease; }
+            transform: translateY(200%) scale(1); }
 
 /*# sourceMappingURL=main.css.map */

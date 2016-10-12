@@ -1,14 +1,15 @@
 .login{
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
   section{
     width: 50%;
     min-height: 100vh;
     background-color: $darkred;
     box-sizing: border-box;
     padding: 10%;
-    display: inline-block;
-    vertical-align: top;
     &:last-child{
       background-color: $red;
     }
@@ -34,6 +35,7 @@
           z-index: -1;
           @include transform(translateY(420%) scale(1));
           @include transform-origin(top center);
+          @include transition(transform 0.3s ease);
         }
         input{
           border: none;
@@ -50,9 +52,8 @@
           &:focus{
             outline: none;
           }
-          &:focus + span, .value{
+          &:focus + span, &.value + span{
             @include transform(translateY(200%) scale(1));
-            @include transition(transform 0.3s ease);
           }
         }
       }
