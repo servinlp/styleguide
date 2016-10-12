@@ -25,4 +25,4 @@ accounts-ui
 meteorhacks:kadira
 accounts-facebook
 kadira:flow-router
-kadira:react-layout
+npm-bcrypt

@@ -2,17 +2,18 @@ import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {render} from 'react-dom';
 
+// import {FlowRouter} from 'meteor/kadira:flow-router';
+// import {mount} from 'react-mounter';
+// import {ReactLayout} from 'meteor/kadira:react-layout';
+
 import '../imports/startup/accounts-config.js';
-import App from '../imports/ui/App.jsx';
+import Dashboard from '../imports/ui/Dashboard.jsx';
+import Login from '../imports/ui/login.jsx';
 
 Meteor.startup(() => {
-  FlowRouter.route("/", {
-    name: "home",
-    action() {
-      if (Meteor.user() == null) {
-        ReactLayout.render(<App />, document.querySelector("main"));
-      }
-    },
-  });
+    if (Meteor.user() === null) {
+      render(<Login />, document.querySelector(".containerer"));
+    } else {
+      render(<Dashboard />, document.querySelector(".containerer"));
+    }
 });
- 
