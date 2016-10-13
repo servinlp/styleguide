@@ -77,8 +77,8 @@ export default class Login extends Component {
               <label>
               <input type="password" ref="pass" onBlur={this.spanStay.bind(this, "pass")} />
               <span>Wachtwoord</span></label>
-              <label> 
-              <input type="password" ref="passAgain" onBlur={this.spanStay.bind(this, "password")} />
+              <label>
+              <input type="password" ref="passAgain" onBlur={this.spanStay.bind(this, "passAgain")} />
               <span>Wachtwoord again</span></label>
               <input type="submit" value="Register" />
             </fieldset>
