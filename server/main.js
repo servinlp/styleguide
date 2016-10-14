@@ -2,6 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 
+import {Guide} from '../imports/api/guides.js';
+
 // import '../imports/startup/accounts-config.js';
 // import {FlowRouter} from 'meteor/kadira:flow-router';
 // import {mount} from 'react-mounter';
