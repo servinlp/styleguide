@@ -40,8 +40,8 @@ export default class Login extends Component {
   }
 
   spanStay(index){
-    console.log(this.refs[index].value.length);
-    console.log(this.refs[index].value.length > 0);
+    // console.log(this.refs[index].value.length);
+    // console.log(this.refs[index].value.length > 0);
     if (this.refs[index].value.length > 0) {
       this.refs[index].classList.add("value");
     } else {

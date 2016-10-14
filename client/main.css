@@ -133,18 +133,23 @@ p {
 .dashboard nav {
   min-height: 100vh;
   width: 20%;
+  max-width: 200px;
   display: inline-block;
   background-color: #FF715B;
   box-sizing: border-box;
   padding: 20px; }
   .dashboard nav button {
     border: none;
-    background-color: none;
+    background: none;
     box-sizing: border-box;
-    padding: 20px; }
+    padding: 20px;
+    display: block;
+    margin: 0 auto; }
     .dashboard nav button img {
       width: 50px;
       height: auto; }
+    .dashboard nav button span {
+      display: block; }
 .dashboard header {
   display: inline-block; }
 .dashboard main {

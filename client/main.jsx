@@ -14,12 +14,14 @@ import Login from '../imports/ui/login.jsx';
 Meteor.startup(() => {
     // var username = Meteor.users.find({_id: Meteor.userId()}).fetch();
     // var username = Meteor.user();
-    console.log(Meteor.userId());
+
     // console.log(username);
-    var userId = Meteor.userId();
+    // var userId = Meteor.userId();
     if (Meteor.user() === null) {
       render(<Login />, document.querySelector(".containerer"));
     } else {
-      render(<Dashboard userId={userId} />, document.querySelector(".containerer"));
+      // console.log(Meteor.user());
+      // console.log(Meteor.user().username);
+      render(<Dashboard />, document.querySelector(".containerer"));
     }
 });

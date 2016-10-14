@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 
@@ -18,4 +18,7 @@ Meteor.startup(() => {
   //     // }
   //   },
   // });
+  // console.log(Meteor.user());
+  // console.log(Meteor.user().username);
+  console.log("test");
 });

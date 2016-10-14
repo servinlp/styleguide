@@ -11,16 +11,16 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       test: "hoi",
-      // userId: Meteor.userId(),
-      // username: Meteor.user().username,
-      // username: "hoi"
+      username: "",
     };
   }
 
   getUsername() {
-    // console.log({this.props.userId});
-    var test = Meteor.users.find({_id: this.props.userId});
-    console.log(test);
+    var user, span = this.refs.userName;
+    setTimeout(function() {
+      user = Meteor.user().username;
+      span.innerHTML = user;
+    }, 300);
   }
 
 
@@ -35,13 +35,13 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    var user = Meteor.user();
     return (
-      <div className="dashboard" onLoad={this.getUsername}>
+      <div className="dashboard" onLoad={this.getUsername.bind(this)}>
         <nav>
           <button>
             <img src="/img/user.svg" alt="user button" />
-            {this.state.test}
-            {this.props.userId}
+            <span ref="userName"></span>
           </button>
         </nav>
         <Header title="You're styleguides"/>
@@ -55,6 +55,6 @@ export default class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  userId: React.PropTypes.string.isRequired,
-};
+// Dashboard.propTypes = {
+//   userId: React.PropTypes.string.isRequired,
+// };
