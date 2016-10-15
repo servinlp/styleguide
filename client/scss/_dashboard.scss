@@ -31,6 +31,9 @@
       display: block;
       margin: 0 auto;
       cursor: pointer;
+      &.open + section{
+        display: block;
+      }
       img{
         width: 50px;
         height: auto;
@@ -53,9 +56,6 @@
       width: 300px;
       box-shadow: 0 0 14px 1px rgba($black, 0.3);
       text-align: left;
-      &.open{
-        display: block;
-      }
       &::before{
         content: "";
         display: block;

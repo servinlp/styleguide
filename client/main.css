@@ -159,6 +159,8 @@ p {
     display: block;
     margin: 0 auto;
     cursor: pointer; }
+    .dashboard nav > button.open + section {
+      display: block; }
     .dashboard nav > button img {
       width: 50px;
       height: auto;
@@ -178,8 +180,6 @@ p {
     width: 300px;
     box-shadow: 0 0 14px 1px rgba(33, 33, 33, 0.3);
     text-align: left; }
-    .dashboard nav section.open {
-      display: block; }
     .dashboard nav section::before {
       content: "";
       display: block;

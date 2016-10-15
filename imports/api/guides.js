@@ -24,11 +24,16 @@ Meteor.methods({
     });
   },
 
-  "guide.find"(id) {
-    check(id, String);
+  "guide.find"(selector) {
+    // check(id, String);
     // Guide.find({ownerId: id}).fetch();
     console.log("test");
-    return Guide.find({ownerId: id}).fetch();
+    return Guide.find(selector);
+  },
+
+  "logout"(){
+    Meteor.logout();
+    render(<Login />, document.querySelector(".containerer"));
   }
 
 });

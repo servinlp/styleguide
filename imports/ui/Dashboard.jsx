@@ -27,12 +27,13 @@ export default class Dashboard extends Component {
 
 
   logout() {
-    Meteor.logout();
-    render(<Login />, document.querySelector(".containerer"));
+    Meteor.call("logout");
+    // Meteor.logout();
+    // render(<Login />, document.querySelector(".containerer"));
   }
 
   toggleUserBox() {
-    document.querySelectorAll("nav button:nth-of-type(1)").classList.toggle("open");
+    document.querySelectorAll("nav button:nth-of-type(1)")[0].classList.toggle("open");
   }
 
   render() {

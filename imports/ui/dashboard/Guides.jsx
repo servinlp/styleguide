@@ -5,7 +5,19 @@ import {Guide} from '../../api/guides.js';
 
 export default class AllGuides extends Component {
   test() {
-    console.log(Meteor.call("guide.find", Meteor.userId()));
+    console.log("iets?");
+    Meteor.call("guide.find", {}, function(error, results) {
+      if (error) {
+        console.log(error);
+      }
+      console.log("all results");
+      console.log(results);
+      console.log("each result"); 
+      results.forEach(function(result){
+        console.log(result);
+      });
+    });
+    console.log("test2");
   }
   render() {
     return (
