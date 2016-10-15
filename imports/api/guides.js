@@ -1,14 +1,19 @@
+import React, {Component, PropTypes} from 'react';
+import ReactDOM, {render} from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import {check} from 'meteor/check';
 
-export const Guide = new Mongo.Collection("guides");
+import Login from '../ui/login.jsx';
 
-// if (Meteor.isServer) {
-//   Meteor.publish('guide', function tasksPublication() {
-//     return Guide.find();
-//   });
-// }
+export const Guide = new Mongo.Collection("guides");
+// export const Users = new Mongo.Collection("users");
+
+if (Meteor.isServer) {
+  Meteor.publish('guides', function tasksPublication() {
+    return Guide.find({ownerId: Meteor.userId()}, {}).fetch();
+  });
+}
 
 Meteor.methods({
   "guide.insert"(obj) {
@@ -25,15 +30,18 @@ Meteor.methods({
   },
 
   "guide.find"(selector) {
-    // check(id, String);
-    // Guide.find({ownerId: id}).fetch();
-    console.log("test");
-    return Guide.find(selector);
+    check(selector, String);
+    return (Guide.find({ownerId: selector}, {}).fetch());
   },
 
-  "logout"(){
-    Meteor.logout();
-    render(<Login />, document.querySelector(".containerer"));
-  }
+  "user.find"(selector) {
+    check(selector, String);
+    return (Meteor.users.find({_id: selector}, {}).fetch());
+  },
+
+  "user.logout"(){
+    // Meteor.logout();
+    Meteor.users.update({username: this.username}, {$set: { "services.resume.loginTokens" : [] }});
+  },
 
 });

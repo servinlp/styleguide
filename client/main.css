@@ -167,7 +167,7 @@ p {
       margin-bottom: .7em; }
     .dashboard nav > button span {
       display: block;
-      font-size: 1em;
+      font-size: 2em;
       color: #FCFFFC; }
   .dashboard nav section {
     display: none;
@@ -202,31 +202,34 @@ p {
 .dashboard main {
   width: 80%;
   min-width: calc(100% - 200px);
-  height: calc(100vh - 100px);
-  display: inline-flex;
+  min-height: calc(100vh - 100px);
   box-sizing: border-box;
   padding: 20px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-start; }
-  .dashboard main section {
-    width: 20%;
-    cursor: pointer; }
-    .dashboard main section.add {
+  display: inline-block; }
+  .dashboard main a {
+    width: 21%;
+    cursor: pointer;
+    color: #848C8E;
+    text-decoration: none;
+    padding: 20px;
+    margin: 0 5.333333% 20px 0;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top; }
+    .dashboard main a.add {
       border: 4px dashed #848C8E;
       border-radius: 10px;
       text-align: center;
-      font-size: 3em; }
-      .dashboard main section.add p {
-        margin-bottom: 20px;
-        color: #848C8E; }
-    .dashboard main section:not(.add) {
-      border: 4px dashed #848C8E;
-      border-radius: 10px;
       font-size: 3em;
-      padding: 20px;
-      box-sizing: border-box; }
+      order: 1; }
+      .dashboard main a.add p {
+        margin-bottom: 20px; }
+    .dashboard main a:not(.add) {
+      border: 4px solid #848C8E;
+      border-radius: 10px;
+      font-size: 1.5em; }
+    .dashboard main a:nth-of-type(4n) {
+      margin-right: 0; }
 
 svg {
   display: block;

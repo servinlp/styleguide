@@ -1,12 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM, {render} from 'react-dom';
 import {Meteor} from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
 import {Mongo} from 'meteor/mongo';
 
-import Login from './login.jsx';
 import Header from './Header.jsx';
 import AddGuide from './dashboard/AddGuide.jsx';
-import Guide from './dashboard/Guides.jsx';
+import AllGuides from './dashboard/Guides.jsx';
+import Login from './login.jsx';
+
+import {Guide} from '../api/guides.js';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -18,28 +21,44 @@ export default class Dashboard extends Component {
   }
 
   getUsername() {
-    var user, span = this.refs.userName;
-    setTimeout(function() {
-      user = Meteor.user().username;
-      span.innerHTML = user;
-    }, 400);
+    var span = this.refs.userName;
+    Meteor.call("user.find", Meteor.userId(), function(err, results){
+      span.innerHTML = results[0].username;
+    });
   }
 
 
   logout() {
-    Meteor.call("logout");
-    // Meteor.logout();
-    // render(<Login />, document.querySelector(".containerer"));
+    Meteor.call("user.logout");
+    Meteor.logout();
+    render(<Login />, document.querySelector(".containerer"));
   }
 
   toggleUserBox() {
     document.querySelectorAll("nav button:nth-of-type(1)")[0].classList.toggle("open");
   }
 
+  renderStyleGuides() {
+    var forState = this;
+    Meteor.call("guide.find", Meteor.userId(), function(err, results){
+      if (err) {
+        console.log(err);
+      }
+      var all = [];
+      results.forEach(function(result) {
+        var datum = result.createdAt.toLocaleDateString();
+        all.push(<AllGuides key={result._id} name={result.name} owner={result.owner} ownerId={result.ownerId} date={datum} />);
+      });
+      forState.setState({
+        guides: all,
+      });
+    });
+  }
+
   render() {
     var user = Meteor.user();
     return (
-      <div className="dashboard" onLoad={this.getUsername.bind(this)}>
+      <div className="dashboard" onLoad={(event) => {this.getUsername.bind(this); this.renderStyleGuides();}}>
         <nav>
           <button onClick={this.toggleUserBox}>
             <img src="/img/user-white.svg" alt="user button" />
@@ -55,7 +74,7 @@ export default class Dashboard extends Component {
         </nav>
         <Header title="You're styleguides"/>
         <main>
-          <Guide name="test" owner="ik zelf" date="today"/>
+          {this.state.guides}
           <AddGuide />
         </main>
       </div>
@@ -64,5 +83,13 @@ export default class Dashboard extends Component {
 }
 
 // Dashboard.propTypes = {
-//   userId: React.PropTypes.string.isRequired,
+//   guides: PropTypes.array.isRequired,
 // };
+//
+// export default createContainer(() => {
+//   Meteor.subscribe('guides');
+//
+//   return {
+//     guides: Meteor.call("guide.find", Meteor.userId()),
+//   };
+// }, Dashboard);

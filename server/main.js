@@ -20,7 +20,7 @@ Meteor.startup(() => {
   //     // }
   //   },
   // });
-  // console.log(Meteor.user());
+  // console.log(this.user());
   // console.log(Meteor.user().username);
   console.log("test");
 });
