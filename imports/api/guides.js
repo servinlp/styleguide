@@ -34,6 +34,11 @@ Meteor.methods({
     return (Guide.find({ownerId: selector}, {}).fetch());
   },
 
+  "guide.search"(selector) {
+    check(selector, Object);
+    return (Guide.find(selector, {}).fetch());
+  },
+
   "user.find"(selector) {
     check(selector, String);
     return (Meteor.users.find({_id: selector}, {}).fetch());

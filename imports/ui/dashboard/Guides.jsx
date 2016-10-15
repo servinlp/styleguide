@@ -3,10 +3,9 @@ import {Meteor} from 'meteor/meteor';
 
 export default class AllGuides extends Component {
   render() {
-    var url = "/" + this.props.owner + "/" + this.props.ownerId + "/";
-    // console.log(url);
+    var url = "/" + this.props.owner + "/" + this.props.itemId + "/";
     return (
-      <a href="#">
+      <a href={url}>
         <svg viewBox="0 0 50 50">
           <line x1="25" y1="0" x2="25" y2="50"/>
           <line x1="50" y1="25" x2="0" y2="25"/>
@@ -22,6 +21,6 @@ export default class AllGuides extends Component {
 AllGuides.propTypes = {
   name: React.PropTypes.string.isRequired,
   owner: React.PropTypes.string.isRequired,
-  ownerId: React.PropTypes.string.isRequired,
+  itemId: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
 }

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM, {render} from 'react-dom';
 import {Meteor} from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
+// import { createContainer } from 'meteor/react-meteor-data';
 import {Mongo} from 'meteor/mongo';
 
 import Header from './Header.jsx';
@@ -20,8 +20,14 @@ export default class Dashboard extends Component {
     };
   }
 
-  getUsername() {
-    var span = this.refs.userName;
+  loadAll() {
+    var that = this;
+    this.getUsername(that);
+    this.renderStyleGuides(that);
+  }
+
+  getUsername(that) {
+    var span = that.refs.userName;
     Meteor.call("user.find", Meteor.userId(), function(err, results){
       span.innerHTML = results[0].username;
     });
@@ -38,8 +44,8 @@ export default class Dashboard extends Component {
     document.querySelectorAll("nav button:nth-of-type(1)")[0].classList.toggle("open");
   }
 
-  renderStyleGuides() {
-    var forState = this;
+  renderStyleGuides(that) {
+    var forState = that;
     Meteor.call("guide.find", Meteor.userId(), function(err, results){
       if (err) {
         console.log(err);
@@ -47,7 +53,7 @@ export default class Dashboard extends Component {
       var all = [];
       results.forEach(function(result) {
         var datum = result.createdAt.toLocaleDateString();
-        all.push(<AllGuides key={result._id} name={result.name} owner={result.owner} ownerId={result.ownerId} date={datum} />);
+        all.push(<AllGuides key={result._id} name={result.name} owner={result.owner} itemId={result._id} date={datum} />);
       });
       forState.setState({
         guides: all,
@@ -58,7 +64,7 @@ export default class Dashboard extends Component {
   render() {
     var user = Meteor.user();
     return (
-      <div className="dashboard" onLoad={(event) => {this.getUsername.bind(this); this.renderStyleGuides();}}>
+      <div className="dashboard" onLoad={this.loadAll.bind(this)}>
         <nav>
           <button onClick={this.toggleUserBox}>
             <img src="/img/user-white.svg" alt="user button" />
