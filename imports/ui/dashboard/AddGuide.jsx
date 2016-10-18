@@ -23,7 +23,7 @@ export default class AddGuide extends Component {
       ownerId: Meteor.userId(),
       createdAt: new Date(),
       item: [{
-        id: new Mongo.ObjectID(),
+        sectionId: new Mongo.ObjectID(),
         name: "Color pallet",
         type: "color",
         colors: [],

@@ -44,6 +44,20 @@
             margin: 0 auto 25px auto;
             cursor: pointer;
           }
+          &:not(.add){
+            input{
+              display: block;
+              box-sizing: border-box;
+              font-family: 'Source Sans Pro', Tahoma, sans-serif;
+              font-size: 1em;
+            }
+            p{
+              input{
+                display: inline-block;
+                width: 3em;
+              }
+            }
+          }
         }
       }
     }

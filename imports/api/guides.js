@@ -34,6 +34,12 @@ Meteor.methods({
     return (Guide.find(selector, {}).fetch());
   },
 
+  "guide.searchByObjectId"(id, num) {
+    check(id, String);
+    check(num, String);
+    return (Guide.find({id: Mongo.ObjectID(num)}, {}).fetch());
+  },
+
   "user.find"(selector) {
     check(selector, String);
     return (Meteor.users.find({_id: selector}, {}).fetch());
@@ -48,10 +54,13 @@ Meteor.methods({
     check(curr, String);
     check(num, String);
 
-    Guide.update({_id: curr, id: num}, {$push: { colors: {
-      name: "color name",
-      hex: "#000",
-    }}});
-  }
+    // return Guide.find({_id: curr, "sectionId": Mongo.ObjectID(num)}, {}).fetch();
+
+    return Guide.update({_id: curr, "item.$.sectionId": Mongo.ObjectID(num)},
+      {$push: { "item.$.colors": {
+        name: "color name",
+        hex: "#000",
+      }}});
+    }
 
 });

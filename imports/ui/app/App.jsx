@@ -11,31 +11,23 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      section: [0,0,0,]
+      // section: [0,0,0,]
     };
   }
   componentDidMount() {
-    var that = this, item, arr, num;
+    var that = this, item, arr = [], num;
     Meteor.call("guide.search", {_id: this.props.guideId}, function(err, results) {
       if (err) { console.log(err); }
       that.refs.guideHeader.innerHTML = results[0].name;
       item = results[0].item;
       for (var i = 0; i < item.length; i++) {
-        arr.push(<Section name={item[i].name} type={item[i].type} id={item[i].id} />);
-        num.push(Math.floor(Math.random() * 10000));
+        num = Math.floor(Math.random() * 10000);
+        arr.push(<Section key={num} name={item[i].name} type={item[i].type} id={item[i].sectionId} />);
         that.setState({
           section: arr,
-          num: num,
         });
-        // that.appendItem(that);
       }
     });
-  }
-
-  appendItem(that) {
-    var item = that.refs.hackerman.innerHTML;
-    ReactDOM.findDOMNode(that).querySelectorAll("main")[0].innerHTML += item;
-    that.refs.hackerman.innerHTML = "";
   }
 
   render() {
@@ -46,12 +38,8 @@ export default class App extends Component {
           <h1 ref="guideHeader"></h1>
         </header>
         <main>
-          {this.state.section.map((result, i) => (
-                    <result key={this.state.num[i]} />
-          ))}
+          {this.state.section}
         </main>
-        <div id="hackerman" ref="hackerman">
-        </div>
       </div>
     );
   }

@@ -22,5 +22,5 @@ Meteor.startup(() => {
   // });
   // console.log(this.user());
   // console.log(Meteor.user().username);
-  console.log("test");
+  // console.log("test");
 });
