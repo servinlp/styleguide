@@ -21,12 +21,7 @@ Meteor.methods({
     if (! this.userId) {
       throw new Meteor.Error("not-authorized");
     }
-    Guide.insert({
-      name: "Your new Style Guide",
-      owner: Meteor.user().username,
-      ownerId: Meteor.userId(),
-      createdAt: new Date(),
-    });
+    return Guide.insert(obj);
   },
 
   "guide.find"(selector) {
@@ -48,5 +43,15 @@ Meteor.methods({
     // Meteor.logout();
     Meteor.users.update({username: this.username}, {$set: { "services.resume.loginTokens" : [] }});
   },
+
+  "guide.AddColor"(curr, num) {
+    check(curr, String);
+    check(num, String);
+
+    Guide.update({_id: curr, id: num}, {$push: { colors: {
+      name: "color name",
+      hex: "#000",
+    }}});
+  }
 
 });

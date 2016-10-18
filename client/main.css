@@ -52,6 +52,11 @@ p {
   font-family: 'Source Sans Pro', Tahoma, sans-serif;
   font-size: 1em; }
 
+#hackerman {
+  display: none;
+  visibility: hidden;
+  opacity: 0; }
+
 header {
   width: 80%;
   min-width: calc(100% - 200px);
@@ -119,6 +124,47 @@ nav {
       width: calc(100% + 20px);
       margin: 0 -20px;
       padding: 0 0 20px 20px; }
+  nav ul {
+    color: #FCFFFC;
+    font-size: 1.2em; }
+
+.app main {
+  width: 80%;
+  min-width: calc(100% - 200px);
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+  padding: 20px;
+  display: inline-block; }
+  .app main .colorset {
+    width: 100%;
+    margin-bottom: 3em; }
+    .app main .colorset header {
+      width: 100%;
+      min-width: 100%;
+      height: 30px;
+      padding-top: 0;
+      margin-bottom: 25px; }
+    .app main .colorset ul li {
+      display: inline-block;
+      width: calc(20% - 100px);
+      min-width: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+      margin: 0 25px 25px 0;
+      text-align: center;
+      box-shadow: 0px 0px 5px 1px rgba(132, 140, 142, 0.1); }
+      .app main .colorset ul li:nth-of-type(5n) {
+        margin-right: 0; }
+      .app main .colorset ul li.add figure {
+        background-color: #EEE; }
+        .app main .colorset ul li.add figure svg {
+          padding: 25px 0; }
+      .app main .colorset ul li figure {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 25px auto;
+        cursor: pointer; }
 
 .login {
   width: 100%;
@@ -221,8 +267,7 @@ nav {
       border: 4px dashed #848C8E;
       border-radius: 10px;
       text-align: center;
-      font-size: 3em;
-      order: 1; }
+      font-size: 3em; }
       .dashboard main a.add p {
         margin-bottom: 20px; }
     .dashboard main a:not(.add) {
