@@ -125,8 +125,10 @@ nav {
       margin: 0 -20px;
       padding: 0 0 20px 20px; }
   nav ul {
-    color: #FCFFFC;
     font-size: 1.2em; }
+    nav ul li a {
+      color: #FCFFFC;
+      text-decoration: none; }
 
 .app main {
   width: 80%;
@@ -152,7 +154,8 @@ nav {
       box-sizing: border-box;
       margin: 0 25px 25px 0;
       text-align: center;
-      box-shadow: 0px 0px 5px 1px rgba(132, 140, 142, 0.1); }
+      box-shadow: 0px 0px 5px 1px rgba(132, 140, 142, 0.1);
+      vertical-align: top; }
       .app main .colorset ul li:nth-of-type(5n) {
         margin-right: 0; }
       .app main .colorset ul li.add figure {
@@ -164,15 +167,76 @@ nav {
         width: 100px;
         height: 100px;
         margin: 0 auto 25px auto;
-        cursor: pointer; }
-      .app main .colorset ul li:not(.add) input {
-        display: block;
-        box-sizing: border-box;
-        font-family: 'Source Sans Pro', Tahoma, sans-serif;
-        font-size: 1em; }
-      .app main .colorset ul li:not(.add) p input {
-        display: inline-block;
-        width: 3em; }
+        cursor: pointer;
+        box-shadow: 0 0 10px 0px rgba(132, 140, 142, 0.4);
+        position: relative; }
+        .app main .colorset ul li figure span {
+          font-size: 1em;
+          color: #848C8E;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          opacity: 0;
+          -webkit-transform: translate(-50%, -50%) scale(0);
+          -moz-transform: translate(-50%, -50%) scale(0);
+          -ms-transform: translate(-50%, -50%) scale(0);
+          -o-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+          -webkit-transform-origin: center center;
+          -moz-transform-origin: center center;
+          -ms-transform-origin: center center;
+          -o-transform-origin: center center;
+          transform-origin: center center;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease; }
+        .app main .colorset ul li figure:hover span {
+          opacity: 1;
+          -webkit-transform: translate(-50%, -50%) scale(1);
+          -moz-transform: translate(-50%, -50%) scale(1);
+          -ms-transform: translate(-50%, -50%) scale(1);
+          -o-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1); }
+      .app main .colorset ul li:not(.add) p {
+        position: relative;
+        line-height: 20px; }
+        .app main .colorset ul li:not(.add) p input {
+          display: inline-block;
+          box-sizing: border-box;
+          font-family: 'Source Sans Pro', Tahoma, sans-serif;
+          font-size: 1em;
+          text-align: left;
+          border: none;
+          margin: 0 0 20px 0;
+          width: calc(100% - 40px);
+          height: 20px;
+          cursor: text;
+          vertical-align: top; }
+          .app main .colorset ul li:not(.add) p input:focus {
+            outline: none; }
+        .app main .colorset ul li:not(.add) p.multiple {
+          cursor: default;
+          text-align: left; }
+          .app main .colorset ul li:not(.add) p.multiple input {
+            display: inline-block;
+            width: 2em;
+            text-align: center; }
+            .app main .colorset ul li:not(.add) p.multiple input::-webkit-outer-spin-button, .app main .colorset ul li:not(.add) p.multiple input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0; }
+        .app main .colorset ul li:not(.add) p svg {
+          height: 20px;
+          width: 20px;
+          display: inline-block;
+          margin: 0 20px 0 0;
+          padding: 0;
+          vertical-align: top; }
+          .app main .colorset ul li:not(.add) p svg path {
+            fill: #000000;
+            fill-opacity: 1;
+            stroke: none;
+            stroke-width: 4;
+            marker: none; }
 
 .login {
   width: 100%;

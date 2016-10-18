@@ -61,6 +61,23 @@ Meteor.methods({
         name: "color name",
         hex: "#000",
       }}});
-    }
+  },
+
+  "guide.UpdateColor"(num, sectionI, i, arr) {
+    check(num, String);
+    check(i, String);
+    check(arr, Array);
+
+    var index = parseInt(i),
+    selector = {},
+    operator = {};
+
+    selector['item.' + sectionI + '.colors.' + i + "." + arr[0]] = arr[1]; // {'colors.0.hex' : '#fff'}
+    operator['$set'] = selector;  // {'$inc' : {'comments.0.num_likes' : 1} }
+
+    // return Guide.find({_id: curr, "sectionId": Mongo.ObjectID(num)}, {}).fetch();
+
+    return Guide.update({"item.$.sectionId": Mongo.ObjectID(num)}, operator);
+  },
 
 });

@@ -26,6 +26,7 @@
           margin: 0 25px 25px 0;
           text-align: center;
           box-shadow: 0px 0px 5px 1px rgba($gray, .1);
+          vertical-align: top;
           &:nth-of-type(5n){
             margin-right: 0;
           }
@@ -43,18 +44,74 @@
             height: 100px;
             margin: 0 auto 25px auto;
             cursor: pointer;
+            box-shadow: 0 0 10px 0px rgba($gray, 0.4);
+            position: relative;
+            span{
+              font-size: 1em;
+              color: $gray;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              opacity: 0;
+              @include transform(translate(-50%, -50%) scale(0));
+              @include transform-origin(center center);
+              @include transition(all 0.3s ease);
+            }
+            &:hover{
+              span{
+                opacity: 1;
+                @include transform(translate(-50%, -50%) scale(1));
+              }
+            }
           }
           &:not(.add){
-            input{
-              display: block;
-              box-sizing: border-box;
-              font-family: 'Source Sans Pro', Tahoma, sans-serif;
-              font-size: 1em;
-            }
             p{
+              position: relative;
+              line-height: 20px;
               input{
                 display: inline-block;
-                width: 3em;
+                box-sizing: border-box;
+                font-family: 'Source Sans Pro', Tahoma, sans-serif;
+                font-size: 1em;
+                text-align: left;
+                border: none;
+                margin: 0 0 20px 0;
+                width: calc(100% - 40px);
+                height: 20px;
+                cursor: text;
+                vertical-align: top;
+                &:focus{
+                  outline: none;
+                }
+              }
+              &.multiple{
+                cursor: default;
+                text-align: left;
+                input{
+                  display: inline-block;
+                  width: 2em;
+                  text-align: center;
+                  &::-webkit-outer-spin-button,
+                  &::-webkit-inner-spin-button{
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
+                }
+              }
+              svg{
+                height: 20px;
+                width: 20px;
+                display: inline-block;
+                margin: 0 20px 0 0;
+                padding: 0;
+                vertical-align: top;
+                path{
+                  fill:#000000;
+                  fill-opacity:1;
+                  stroke:none;
+                  stroke-width:4;
+                  marker:none;
+                }
               }
             }
           }

@@ -20,7 +20,7 @@ export default class Section extends Component {
       item = results[0].item[0].colors;
       for (var i = 0; i < item.length; i++) {
         num = Math.floor(Math.random() * 10000);
-        arr.push(<SetColor key={num} name={item[i].name} hex={item[i].hex} />);
+        arr.push(<SetColor key={num} name={item[i].name} hex={item[i].hex} nth={i} />);
         that.setState({
           Colors: arr,
         });
@@ -41,7 +41,7 @@ export default class Section extends Component {
   render() {
     var name = this.props.name.replace(/\s+/g, '').toLowerCase();
     return (
-      <section id={name} className={this.props.type == "color" ? "colorset" : "fontset"} data-num={this.props.id}>
+      <section id={name} className={this.props.type == "color" ? "colorset" : "fontset"} data-num={this.props.id} data-nth={this.props.nth}>
         <header>
           <h2>Color pallet</h2>
         </header>
@@ -54,7 +54,7 @@ export default class Section extends Component {
                 <line x1="50" y1="25" x2="0" y2="25"/>
               </svg>
             </figure>
-            <h3>Name</h3>
+            <p>Name</p>
             <p>#EEEEEE</p>
             <p>rgb(238, 238, 238)</p>
           </li>
@@ -68,4 +68,5 @@ this.Proptype = {
   name: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   id: React.PropTypes.string.isRequired,
+  nth: React.PropTypes.number.isRequired,
 }

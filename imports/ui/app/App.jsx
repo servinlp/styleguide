@@ -22,7 +22,7 @@ export default class App extends Component {
       item = results[0].item;
       for (var i = 0; i < item.length; i++) {
         num = Math.floor(Math.random() * 10000);
-        arr.push(<Section key={num} name={item[i].name} type={item[i].type} id={item[i].sectionId} />);
+        arr.push(<Section key={num} name={item[i].name} type={item[i].type} id={item[i].sectionId} nth={i} />);
         that.setState({
           section: arr,
         });
