@@ -1,7 +1,7 @@
 # Styleguide
 
 ## Het idee
-Een online platform waar jij samen met je collega's een styleguide kan maken en deze delen met je opdrachtgever.
+Een online platform waar jij samen met je collega's een styleguide kan maken en deze delen met de wereld.
 
 ## Leerdoelen
 - Meteor.js (nog geen kennis van)
@@ -44,6 +44,12 @@ Mijn tweede (en huidige) oplossing is beter maar alsnog niet optimaal. Deze doet
 Qua routing is de site heel basic. We hebben de homepage die of het inlog scherm laat zien als je niet bent ingelogt of het dashboard laat zien. En dan hebben we de pagina met de echte styleguide. Hier bestaat de link uit `/owner-name/guide-id/`.
 #### Methods
 Alle calls naar de database zijn worden door middel van methods en calls vanaf de server geregeld en niet de client. Dit voor veiligheids redenen dat je niet wilt dat iemand vanuit de client je database kan aanpassen.
+#### Publish en Subscribe
+Standaard is in Meteor de gehele database ook lokaal op de client. **Dit wil je in productie echt nooit!!** Je wilt dat de client alleen toegang heeft tot gegevens die voor die client van toepassing zijn. In mijn geval wil je dus dat een client alleen toegang heeft tot de gegevens van een specifieke styleguide (mits hij hier toegang toe heeft).
+
+Om als eerst er voor te zorgen dat niet de gehele database lokaal te zien is moet je in de terminal de volgende command uitvoeren `meteor remove autopublish`. Om er dan uiteindelijk voor te zorgen dat de juiste client de juiste gegevens krijgt zal je moeten werken met publish en subscribe.
+
+Het principe hiervan is zeer simpel. In een publish kan je vertellen welke data er openbaar gemaakt wordt voor die gebruiker. Voor de styleguide heb je dus een publish die de juiste informatie van die styleguide openbaar maakt. Je kan ook weer een publish maken die de gegevens van de gebruiker openbaar maakt (voor bijvoorbeeld een account pagina). Op het moment dat de gebruiker dan naar een styleguide pagina (of account pagina) gaat zal hier in de achtergrond door middel van subscribe naar de juiste informatie gevraagd. Op deze manier zal alleen de informatie die op dat moment nodig is voor de gebruiker beschrikbaar zijn voor hem.
 
 ### React
 #### Components
